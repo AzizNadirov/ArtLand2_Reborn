@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% block title %} {{s_user.username}} profile {% endblock %}
+{% block body %}
+<h2 class = "text-secondary">{{s_user.username}}</h2>
+
+<img src="{{s_user.profile.photo.url}}" class="media img-rounded" width="150">
+<hr>
+{% if is_owner %}
+    <a href="{% url 'update_profile' %}", class = "btn btn-secondary">Update profile info</a>
+    <br>
+    <h2 class = "text-secondary">Your articles </h2>
+{% else %}
+    <h2 class = "text-secondary">{{s_user.username}} articles </h2>
+{% endif %}
+
+<br>
+<div class="block">
+    {% if user_arts %}
+        <h3 class = "text-primary">User's articles</h3>
+        {% include 'user/profile_arts.html' %}
+    {% else %}
+     <h3 class = "text-primary">User has no any articles!</h3>
+    {% endif %}
+</div>
+{% endblock %}

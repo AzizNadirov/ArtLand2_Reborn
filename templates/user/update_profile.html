@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} Update profile {% endblock %}
+{% block body %}
+<h2 class = "text-secondary">{{user.username}}</h2>
+<form method="post", enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group" enctype = "multipart/form-data">
+        <legend class="border-bottom mb-4">Profile info </legend>
+        {{u_form.as_p}}
+        <br>
+        {{p_form.as_p}}
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-outline-info" type="submit"> Update! </button>
+    </div>
+</form>
+{% endblock %}

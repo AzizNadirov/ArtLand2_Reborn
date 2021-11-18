@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="form-control">
+<form method="post">
+    {% csrf_token %}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Article Deletion </legend>
+        <h2> Article will be deleted. Dou you agree?</h2>
+    </fieldset>
+    <div class="form-group">
+        <button class="btn btn-danger" type="submit"> Yes, Delete </button>
+        <a class="btn btn-info" href="{% url 'art_detail' object.id %}">No, Go Back</a>
+    </div>
+</form>
+</div>
+{% endblock %}

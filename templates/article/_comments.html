@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+<span>Comments({{article.comments.count}})</span>
+{% for comment in comments %}
+  <div class="card">
+    <div class="post-comment">
+      <img src="{{comment.author.profile.photo.url}}" alt="" class="profile-photo-sm">
+      <p>
+        <a href="{% url 'profile' comment.author.username %}" class="card-title profile-link">{{comment.author.username}} </a>
+        <i class="em em-laughing">
+          {{comment.body}}
+        </i>
+      </p>
+    </div>
+  </div>
+ 
+{% empty %}
+    <span> There are no comments. Be the first!!</span>
+{% endfor %}
+<div class="post-comment" class="form-control" >
+<form method = "POST">
+    {% csrf_token %}
+    <img src="{{user.profile.photo.url}}" alt="" class="profile-photo-sm">
+    {{comment_form | crispy}}
+    <button class="btn btn-info btn-primary"> Post </button>
+</form>
+</div>

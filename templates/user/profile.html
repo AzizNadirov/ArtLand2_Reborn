@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<link rel="stylesheet" type="text/css" href="{% static 'user/profile.css' %}">
+<div class="row">
+    <div class="col-md-5 mx-auto">
+        <div class="bg-white shadow rounded overflow-hidden">
+            <div class="px-4 pt-0 pb-4 cover">
+                <div class="media align-items-end profile-head">
+                    <div class="row">
+                        <div class = "col-md-5 mb-2">
+                            <div class="profile mr-3"><img src="{{user.profile.photo.url}}" alt="..." width="130" class="rounded mb-2 img-thumbnail"></div>
+                        </div>
+                        <div class = "col-md-7">
+                            <div class="media-body mb-5 text-white">
+                                <p class="font-italic mb-0">Full name: <i>{{user.first_name}} {{user.last_name}}</i></p>
+                                <p class="font-italic mb-0">birth day: {{user.profile.birthday}}</p>
+                                <p class="font-italic mb-0">Email: {{user.email}}</p>
+                                <p class="font-italic mb-0">Here since: {{user.profile.registration_date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light p-4 d-flex justify-content-end text-center">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <h5 class="font-weight-bold mb-0 d-block">{{user.articles.count}}</h5>
+                        <small class="text-muted"> <i class="fas fa-image mr-1"></i>Total Articles</small>
+                    </li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+            </div>
+            <div class="px-4 py-3">
+                <div class="p-4 rounded shadow-sm bg-light">
+                    <h5 class="mb-0 h5">Short bio:</h5>
+                    <hr>
+                    <p class="font-italic mb-0">{{user.profile.bio}}</p>
+                </div>
+            </div>
+            <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Recent Articles</h5>
+                </div>
+                <div class="row">
+                {% include 'art_list.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}

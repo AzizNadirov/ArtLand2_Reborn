@@ -1,0 +1,37 @@
+{% for article in articles %}
+{% if article.photo %}
+<div class="card mb-3" style="max-width: 540spanx;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{{article.photo.url}}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'art_detail' article.id %}">{{article.title}}</a></h5>
+            <p class="card-text"> {{article.content|truncatewords:30|linebreaks}}</p>
+            <span class="card-text"><small class="text-muted">{{article.created_at}}</small></span>
+            <span class="card-text"><small class="text-muted">Category: {{article.category}}</small></span>
+            <span class="card-text"><small class="text-muted">Author: {{article.author}}</small></span>
+            <span class="card-text"><small class="text-muted">Views: {{article.views}}</small></span>
+            <span class="card-text"><small class="text-muted">Comments: {{article.comments.count}}</small></span>
+        </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+<div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'art_detail' article.id %}">{{article.title}}</a></h5>
+            <p class="card-text"> {{article.content|truncatewords:30|linebreaks}}</p>
+            <span class="card-text"><small class="text-muted">{{article.created_at}}</small></span>
+            <span class="card-text"><small class="text-muted">Category: {{article.category}}</small></span>
+            <span class="card-text"><small class="text-muted">Author: {{article.author}}</small></span>
+            <span class="card-text"><small class="text-muted">Views: {{article.views}}</small></span>
+            <span class="card-text"><small class="text-muted">Comments: {{article.comments.count}}</small></span>
+        </div>
+</div>
+{% endif %}
+{% empty %}
+<sspanan>There are no articles yet</sspanan>
+{% endfor %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %} ArtLand2_Reborn - Welcome {% endblock %}
+{% block body %}
+<div style="text-align: right; padding-right: 50px; padding-top: 20px;">
+    <a href="{% url 'art_create' %}" class="btn btn-success"> New Article! </a>
+</div>
+<br>
+<div class="h4 text-center">Resently added articles</div>
+<br>
+
+{% include 'art_list.html' %}
+
+{% endblock %}
