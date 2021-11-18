@@ -1,1 +1,5 @@
-It is my playground project, just for learn and apply my django knowledges
+# ArtLand
+### Platform for Creating and Reading articles with micro social media app functionality
+
+This is one of my first projects on Django. I have played on it locally so far..
+
