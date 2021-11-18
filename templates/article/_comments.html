@@ -14,13 +14,15 @@
   </div>
  
 {% empty %}
-    <span> There are no comments. Be the first!!</span>
+<div class="card">
+  <span>There are no comments. Be the first!!</span>
+</div>  
 {% endfor %}
 <div class="post-comment" class="form-control" >
-<form method = "POST">
-    {% csrf_token %}
-    <img src="{{user.profile.photo.url}}" alt="" class="profile-photo-sm">
-    {{comment_form | crispy}}
-    <button class="btn btn-info btn-primary"> Post </button>
-</form>
+  <form method = "POST">
+      {% csrf_token %}
+      <img src="{{user.profile.photo.url}}" alt="" class="profile-photo-sm">
+      {{comment_form | crispy}}
+      <button class="btn btn-info btn-primary"> Post </button>
+  </form>
 </div>

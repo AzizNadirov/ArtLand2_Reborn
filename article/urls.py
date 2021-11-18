@@ -7,4 +7,5 @@ urlpatterns = [
     path('new/', ArtCreate .as_view(), name='art_create'),
     path('<int:pk>/update/', ArtUpdate.as_view(), name='art_update'),
     path('<int:pk>/delete/', ArtDelete.as_view(), name='art_delete'),
+    path('about/', about_us, name='about_us'),
 ]

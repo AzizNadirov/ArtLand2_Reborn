@@ -10,6 +10,8 @@ def home(request):
     recent_arts_queryset = Article.objects.order_by('-created_at')[:RECENT_NUM]
     return render(request,'article/home.html', {'articles': recent_arts_queryset})
 
+def about_us(request):
+    return render(request, 'about_us.html')
 
 class ArtList(View):
     def get(self, request):
