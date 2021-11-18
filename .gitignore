@@ -1,2 +1,3 @@
-/media/
+!default.jpg
+*.[png/jpg]
 db.sqlite3
