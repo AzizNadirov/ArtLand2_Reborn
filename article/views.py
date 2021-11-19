@@ -1,11 +1,14 @@
 from article.forms import CommentForm, SortFiltForm
 from django.db.models.expressions import F
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
+from django.views.generic import CreateView, UpdateView, DeleteView, View
 from .models import Article
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 def home(request):
+    """
+        Shows last RECENT_NUM articles
+    """
     RECENT_NUM = 5
     recent_arts_queryset = Article.objects.order_by('-created_at')[:RECENT_NUM]
     return render(request,'article/home.html', {'articles': recent_arts_queryset})
@@ -14,6 +17,9 @@ def about_us(request):
     return render(request, 'about_us.html')
 
 class ArtList(View):
+    """
+    Lists articles with sort and filter ability.
+    """
     def get(self, request):
        articles = Article.objects.filter(is_active=True, drafted=False).order_by('created_at')
        template_name = 'article/list.html'
@@ -49,10 +55,6 @@ class ArtList(View):
         sort_filt_form = SortFiltForm(data = request.POST)
         context = {'articles': articles, 'sort_filt_form': sort_filt_form}
         return render(request, template_name, context)
-
-
-
-
 
 
 class ArtDetail(View):
@@ -96,6 +98,7 @@ class ArtCreate(LoginRequiredMixin,CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
     context_object_name = 'form'
 
 
@@ -111,10 +114,8 @@ class ArtUpdate(LoginRequiredMixin, UserPassesTestMixin,UpdateView):
 
     def test_func(self):    # test for UserPassesTestMixin
         article = self.get_object()
-        if self.request.user == article.author:
-            return True
-        else:
-            return False
+        return self.request.user == article.author
+
 
 class ArtDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Article
@@ -123,7 +124,4 @@ class ArtDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
     def test_func(self):    # test for UserPassesTestMixin
         article = self.get_object()
-        if self.request.user == article.author:
-            return True
-        else:
-            return False
+        return self.request.user == article.author

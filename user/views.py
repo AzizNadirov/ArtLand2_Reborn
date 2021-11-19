@@ -1,4 +1,3 @@
-from user.models import Profile
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
@@ -47,12 +46,9 @@ class UserDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     template_name = 'user/user_confirm_delete.html'
     success_url = '/'
 
-    def test_func(self):    # test for UserPassesTestMixin
+    def test_func(self):      # test for UserPassesTestMixin
         user = self.get_object()
-        if self.request.user.id == user.id:
-            return True
-        else:
-            return False
+        return self.request.user.id == user.id
 
 @login_required
 def profile(request):
