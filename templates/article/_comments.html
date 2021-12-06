@@ -5,7 +5,7 @@
     <div class="post-comment">
       <img src="{{comment.author.profile.photo.url}}" alt="" class="profile-photo-sm">
       <p>
-        <a href="{% url 'profile' comment.author.username %}" class="card-title profile-link">{{comment.author.username}} </a>
+        <a href="{% url 'user' comment.author.username %}" class="card-title profile-link">{{comment.author.username}} </a>
         <i class="em em-laughing">
           {{comment.body}}
         </i>

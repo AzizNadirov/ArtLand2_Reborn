@@ -102,7 +102,7 @@ img.profile-photo-sm {
                 <img src="{{article.author.profile.photo.url}}" alt="user" class="profile-photo-md pull-left">
                 <div class="post-detail">
                   <div class="user-info">
-                    <h5><a href="{% url 'profile' article.author.username %}" class="profile-link">{{article.author.username}}</a></h5>
+                    <h5><a href="{% url 'user' article.author.username %}" class="profile-link">{{article.author.username}}</a></h5>
                     <p class="text-muted">{{article.created_at}}</p>
                     <span >Category: {{article.category.name}}</span>
                     <span >Views: {{article.views}}</span>
