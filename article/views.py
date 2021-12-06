@@ -21,7 +21,7 @@ class ArtList(View):
     Lists articles with sort and filter ability.
     """
     def get(self, request):
-       articles = Article.objects.filter(is_active=True, drafted=False).order_by('created_at')
+       articles = Article.objects.filter(is_active=True, drafted=False).order_by('-created_at')
        template_name = 'article/list.html'
        sort_filt_form = SortFiltForm(initial={"sort_by":"dates", "category_filt": None})
        context = {'articles':articles, 'sort_filt_form': sort_filt_form}
@@ -59,10 +59,14 @@ class ArtList(View):
 
 class ArtDetail(View):
     template_name = 'article/about.html'
+
     def increment_view(self, article):
+        """ view incerementer """
+
         article.views = F('views') + 1
         article.save()
         article.refresh_from_db()
+        
 
     def post(self, request, pk):
         article = get_object_or_404(Article, id = pk)

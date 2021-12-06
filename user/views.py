@@ -62,7 +62,7 @@ def profile(request):
                'is_paginated': True, 'page_obj': page_obj}
     return render(request, 'user/profile.html', context)
 
-def profile(request, username):
+def user(request, username):
     # NUM_TOP_ARTS = 10
     user = get_object_or_404(User, username = username)
     user_articles_queryset = Article.objects.filter( author__id = user.id, drafted=False).order_by('-created_at')

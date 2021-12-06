@@ -15,5 +15,4 @@ class SortFiltForm(forms.Form):
     sort_by = forms.ChoiceField(choices=SORT_BY)
     category_filt = forms.ModelChoiceField(Category.objects.all(), required=False)
 
-# does this work?
 
